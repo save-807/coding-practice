@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+using namespace std;
+bool cmp(const pair<int,int> a,const pair<int,int> b){
+    if(a.second!=b.second){
+        return a.second>b.second;
+    }
+    return a.first<b.first;
+}
+int main(){
+    int n,m;
+    cin>>n>>m;
+    vector<vector<pair<int,int>>>a(n+1);
+    for(int i=0;i<m;i++){
+        int x,y,z;
+        cin>>x>>y>>z;
+        a[x].emplace_back(y,z);
+    }
+    for(int i=1;i<=n;i++){
+        //sort排序CMP函数要用确定性的const 类型
+        sort(a[i].begin(),a[i].end(),cmp);
+    }
+    int k;
+    cin>>k;
+    for(int i=0;i<k;i++){
+        int cur;
+        cin>>cur;
+        int flag=0;
+        unordered_set<int>s;
+        while(cur!=-1){
+            if(flag)cout<<"->";
+            cout<<cur;
+            flag=1;
+            s.insert(cur);
+            int now=cur;
+            for(int i=0;i<(int)a[cur].size();i++){
+                int next=a[cur][i].first;
+                if(s.count(next))continue;
+                else {
+                    cur=next;
+                    break;
+                }
+            }
+            if(cur==now)cur=-1;
+        }
+        cout<<endl;
+    }
+    return 0;
+}

@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int n,t;
+    cin>>n>>t;
+    int flag=0;
+    vector<int>a(n);
+    for(int i=0;i<n;i++)cin>>a[i];
+    stack<pair<int,int>>current,next;
+    for(int i=n-1;i>=0;i--){
+        current.emplace(a[i],i+1);
+    }
+    while(!current.empty()){
+        int sum=0,count=0;
+        while(!current.empty()){
+            auto p=current.top();
+            current.pop();
+            int x=p.first;
+            int y=p.second;
+            if(x>t){
+                sum+=x;
+                count++;
+                next.emplace(x,y);
+            }
+            else{
+                if(flag)cout<<" ";
+                flag=1;
+                cout<<y;
+            }
+        }
+        if(count>0)t=sum/count;
+        swap(current,next);
+    }
+    return 0;
+}

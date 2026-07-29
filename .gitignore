@@ -13,9 +13,17 @@ dist/
 build/
 __pycache__/
 *.py[cod]
+*.exe
+*.out
+*.o
+*.obj
+
+# Competitive Programming Helper test data
+.cph/
 
 # Editor and operating-system files
 .idea/
 .vscode/
+.local-tools/
 .DS_Store
 Thumbs.db
