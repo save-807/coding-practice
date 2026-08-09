@@ -27,3 +27,4 @@ __pycache__/
 .local-tools/
 .DS_Store
 Thumbs.db
+.obsidian
